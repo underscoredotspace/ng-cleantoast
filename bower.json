@@ -1,0 +1,19 @@
+{
+  "name": "ng-cleantoast",
+  "authors": [
+    "ampersand <ampersand@underscore.space>"
+  ],
+  "description": "Toast Service for Angular 1.x",
+  "main": "src/ng-cleantoast.js",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "toast"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/underscoredotspace/ng-cleantoast",
+  "private": true,
+  "dependencies": {
+    "angularjs": "latest"
+  }
+}

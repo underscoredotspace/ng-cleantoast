@@ -1,0 +1,13 @@
+<html ng-app="demoApp">
+<head>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="../bower_components/angularjs/angular.js"></script>
+  <script src="../src/ng-cleantoast.js"></script>
+  <script src="script.js"></script>
+</head>
+<body ng-controller="demoController">
+  <button ng-click="newToast()">Title</button><br>
+  <button ng-click="newNoTitleToast()">No Title</button>
+  <div class="ct-toasts"><ct-toasts></ct-toasts></div>
+</body>
+</html>
