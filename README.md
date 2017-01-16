@@ -28,7 +28,7 @@ New toasts are created using:
 toasts.new(type, title, text, timeout);
 ````
 
-`title` and `text` are required, but can be empty strings and as such element wont show. `timeout` IS optional and will default to 3000ms (3s). 
+`title` and `text` are required, but can be empty strings and as such element wont show. `timeout` IS optional and will default to 3000ms (3s) if not passed. 
 
 You will also need to tell the browser where to show your toasts by placing an element or attribute. Again, from the demo: 
 
@@ -42,7 +42,7 @@ OR
 <ct-toasts></ct-toasts>
 ````
 
-TODO
+##TODO
 - CSS explanation
 - Better documentation
 - Tests!
