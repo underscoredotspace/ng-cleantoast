@@ -2,17 +2,20 @@
 
 Simple toast service for Angular 1.x. Most toast services are built on sending $emit messages via $rootScope. This never felt right to me, so this design keeps all data within the service and it's related directives. In any case, $scope.$on is a watcher and if you have a ton of watchers your users are going to have a bad time. 
 
-## Installation
-Add `src/ng-cleantoast.js` to your main index.html along with Angular thus: 
+##Installation
+Available on Bower with `bower install ng-cleantoast`. 
+
+## Usage
+Add `bower_components/ng-cleantoast/src/ng-cleantoast.js` to your main index.html along with Angular thus: 
 
 ````html
 <head>
-  <script src="[pathto]/bower_components/angularjs/angular.min.js"></script>
-  <script src="[pathto]/src/ngIsVisible.js"></script>
+  <script src="bower_components/angularjs/angular.min.js"></script>
+  <script src="bower_components/ng-cleantoast/src/ngIsVisible.js"></script>
 </head>
 ````
 
-Inject `ngCleanToast` to your app, and add `toasts` to each of your components. For example, in the demo we have: 
+Inject `ngCleanToast` to your module, and add `toasts` to any components you intend to create toasts from. For example, in the demo we have: 
 
 ````javascript
 angular.module('demoApp', ['ngCleanToast'])

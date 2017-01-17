@@ -1,7 +1,7 @@
 {
   "name": "ng-cleantoast",
   "authors": [
-    "Colin Tindle <ampersand@underscore.space>"
+    "Colin Tindle <ampersand@underscore.space> (https://underscore.space)"
   ],
   "description": "Toast Service for Angular 1.x",
   "main": "src/ng-cleantoast.js",
@@ -10,10 +10,11 @@
     "angularjs",
     "toast"
   ],
-  "license": "Creative Commons Attribution-NonCommercial 4.0 International License",
+  "license": "CC-BY-NC-4.0",
   "homepage": "https://github.com/underscoredotspace/ng-cleantoast",
-  "private": true,
+  "private": false,
   "dependencies": {
-    "angularjs": "latest"
-  }
+    "angularjs": "^1.6.x"
+  },
+  "ignore": ["**/*", "node_modules", "bower_components"]
 }
