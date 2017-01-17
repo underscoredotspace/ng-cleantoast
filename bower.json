@@ -16,5 +16,5 @@
   "dependencies": {
     "angularjs": "^1.6.x"
   },
-  "ignore": ["**/*", "node_modules", "bower_components"]
+  "ignore": ["node_modules", "bower_components"]
 }
