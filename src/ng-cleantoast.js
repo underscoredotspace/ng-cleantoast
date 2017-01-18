@@ -21,11 +21,12 @@ angular.module('ngCleanToast', [])
 .directive('ctToasts', function($timeout, toasts){
   return {
     restrict: 'AE',
-    replace: true,
+    replace: false,
     template: '<div ng-repeat="toast in toasts" class="ct-toast ct-toast-{{toast.type}}"><div ng-if="toast.title" class="ct-toast-title">{{toast.title}}</div><div ng-if="toast.text" class="ct-toast-text">{{toast.text}}</div></div>',
     compile: function() {
       return {
         pre: function(s, e, a) {
+          e.addClass('ct-toasts');
           s.toasts = [];
           toasts.seton(function(toast) {
             s.toasts.push(toast);
