@@ -25,13 +25,13 @@ angular.module('ngCleanToast', [])
     template: '<div ng-repeat="toast in toasts" class="ct-toast ct-toast-{{toast.type}}"><div ng-if="toast.title" class="ct-toast-title">{{toast.title}}</div><div ng-if="toast.text" class="ct-toast-text">{{toast.text}}</div></div>',
     compile: function() {
       return {
-        pre: function(s, e, a) {
-          e.addClass('ct-toasts');
-          s.toasts = [];
+        pre: function(scope, element) {
+          element.addClass('ct-toasts');
+          scope.toasts = [];
           toasts.seton(function(toast) {
-            s.toasts.push(toast);
+            scope.toasts.push(toast);
             $timeout(function () {
-              s.toasts.splice(s.toasts.indexOf(toast),1);
+              scope.toasts.splice(scope.toasts.indexOf(toast),1);
             }, toast.timeout || 3000);
           })
         }

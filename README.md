@@ -45,7 +45,27 @@ OR
 <ct-toasts></ct-toasts>
 ````
 
+# CSS - Placement of Toasts
+It's convention that your toasts will pop up over the top of some other content, butnot blocking anything important. In the demo, the `ct-toasts` element has fixed positioning and uses a very high `z-index`. 
+
+Some tips here also: initial `height` of `ct-toasts` should be `0`, and `max-height` should be no more than the view height (minus any `top` amount) to prevent a scrollbar appearing unnecessarily. 
+
+````css
+.ct-toasts {
+  z-index: 1000;
+  width: 300px;
+  height: 0;
+  max-height: calc(100vh - 20px); 
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  text-align: center;
+}
+````
+
+# Demo
+Rather ugly styles in the [example] (https://underscoredotspace.github.io/ng-isvisible/demo/index.html), but I am not a designer so please forgive me 🤓. 
+
 ##TODO
-- CSS explanation
 - Better documentation
 - Tests!
