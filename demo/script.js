@@ -1,19 +1,19 @@
 angular.module('demoApp', ['ngCleanToast'])
 
 .controller('demoController', function($scope, toasts) {
-  colour = 0;
+  var colour = 0;
 
-  nextColor = function() {
+  nextColour = function() {
     colour++
     if (colour>3) {colour=0}
   }
 
   $scope.newToast = function() {
     toasts.new(colour, 'Toast Title', 'Your toast is dark brown in colour');
-    nextColor()
+    nextColour()
   }
   $scope.newNoTitleToast = function() {
     toasts.new(colour, '', 'Done!', 2000);
-    nextColor()
+    nextColour()
   }
 })

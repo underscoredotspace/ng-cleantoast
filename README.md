@@ -64,7 +64,7 @@ Some tips here also: initial `height` of `ct-toasts` should be `0`, and `max-hei
 ````
 
 # Demo
-Rather ugly styles in the [example] (https://underscoredotspace.github.io/ng-isvisible/demo/index.html), but I am not a designer so please forgive me 🤓. 
+Rather ugly styles in the [example] (https://underscoredotspace.github.io/ng-cleantoast/demo/index.html), but I am not a designer so please forgive me 🤓. 
 
 ##TODO
 - Better documentation
