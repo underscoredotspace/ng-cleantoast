@@ -31,6 +31,8 @@ New toasts are created using:
 toasts.new(type, title, text, timeout);
 ````
 
+![A wild Toast has appeared!] (screenshot.png)
+
 `title` and `text` are required, but can be empty strings and as such element wont show. `timeout` IS optional and will default to 3000ms (3s) if not passed. 
 
 You will also need to tell the browser where to show your toasts by placing an element or attribute. Again, from the demo: 
@@ -48,7 +50,7 @@ OR
 ### CSS - Placement of Toasts
 It's convention that your toasts will pop up over the top of some other content, but not blocking anything important. In the demo, the `ct-toasts` element has fixed positioning and uses a very high `z-index`. 
 
-Some tips here also: initial `height` of `ct-toasts` should be `0`, and `max-height` should be no more than the view height (minus any `top` amount) to prevent a scrollbar appearing unnecessarily. 
+If you follow this patter, the initial `height` of `ct-toasts` should be `0`, and `max-height` should be no more than the view height (minus any `top` amount) to prevent a scrollbar appearing unnecessarily. 
 
 ````css
 .ct-toasts {
@@ -63,7 +65,7 @@ Some tips here also: initial `height` of `ct-toasts` should be `0`, and `max-hei
 ````
 
 ### Demo
-Rather ugly styles in the [example] (https://underscoredotspace.github.io/ng-cleantoast/demo/index.html), but I am not a designer so please forgive me 🤓. 
+There is an [example] (https://underscoredotspace.github.io/ng-cleantoast/demo/index.html) with styles (background is purely to enhance the opacity/shadow change on hover). 
 
 ### TODO
 - Better documentation

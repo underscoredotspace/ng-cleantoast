@@ -19,7 +19,7 @@ angular.module('demoApp', ['ngCleanToast'])
   }
   $scope.newNoTitleToast = function () {
     // toasts.type() resolves the type name to the index, e.g. 'warn' => 1
-    toasts.new(toasts.type(type), '', 'Done!', 20000);
+    toasts.new(toasts.type(type), '', 'As well as having no title, this toast waits for 10s instead of default 3', 10000);
     nextColour()
   }
 })
