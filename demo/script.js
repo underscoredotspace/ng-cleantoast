@@ -4,7 +4,7 @@ angular.module('demoApp', ['ngCleanToast'])
   // Add your own type called test
   toasts.addType('test')
 
-  // This lets us rotat through all colours to demonstrate them
+  // This lets us rotate through all colours to demonstrate them
   var colour = 0
   var type = toasts.types[colour]
   nextColour = function () {
