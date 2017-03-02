@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
+body {
+   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAYklEQVQoU2MUzlP9z4AErCMZGI4uRxaBsBmRFYIUwQC6YtIVIpuGzVS4iUQpxKYI3VSwicgKzSe9YDiZJ4HhKUa/46jBg64QpAMUAii+BgkWvX7B0CeKMBFmNIZCzKCGiAAAI1spfbSN7hEAAAAASUVORK5CYII=) repeat;
+}
+
 .ct-toasts {
   font-family: 'Source Sans Pro';
   position: fixed;
@@ -15,9 +19,14 @@
   margin: 10px;
   opacity: 0.9;
   color: #222426;
-  box-shadow: 0 5px 5px 0 rgba(100, 100, 100, 0.5);
+  box-shadow: 3px 3px 5px rgba(100, 100, 100, 0.5);
   border-radius: 5px;
   border: 1px solid black;}
+
+.ct-toast:hover {
+  opacity: 1;
+  box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
+}
   
 .ct-toast-title {
   padding: 5px;
@@ -25,7 +34,8 @@
   text-transform: uppercase;
   font-size: 110%;
   letter-spacing: 3px;
-  background: rgba(100, 100, 100, 0.25)
+  background: rgba(100, 100, 100, 0.25);
+  border-bottom: 1px dashed black;
 }
 
 .ct-toast-text {
@@ -33,10 +43,12 @@
 }
 
 .ct-toast-error {
-  background-color: rgba(255, 124, 124, 0.75); }
+  background-color: rgb(255, 124, 124); }
 .ct-toast-debug {
-  background-color: rgba(106, 184, 37, 0.75); }
+  background-color: rgb(106, 184, 37); }
 .ct-toast-warn {
-  background-color: rgba(255, 255, 124, 0.75); }
+  background-color: rgb(255, 255, 124); }
 .ct-toast-info {
-  background-color: rgba(124, 226, 255, 0.75); }
+  background-color: rgb(124, 226, 255); }
+  .ct-toast-test {
+  background-color: white }
