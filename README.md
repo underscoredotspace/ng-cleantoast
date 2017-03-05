@@ -31,7 +31,7 @@ New toasts are created using:
 toasts.new(type, title, text, timeout);
 ````
 
-Built-in types are `info`, `warn`, `success` and `error`. They can be accessed via `toasts.types` like `toasts.types.info`. Custom types can be added with `toasts.addType('myNiceType')`. This new types can then be passed using `toasts.types.myNiceType`.
+Built-in types are `info`, `warn`, `success` and `error`. They can be accessed via `toasts.types` like `toasts.types.info`. Custom types can be added with `toasts.addType('myNiceType')`. This new types can then be passed using `toasts.type('myNiceType')`.
 
 ![A wild Toast has appeared!] (screenshot.png)
 

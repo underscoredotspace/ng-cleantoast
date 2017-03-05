@@ -18,7 +18,7 @@ angular.module('demoApp', ['ngCleanToast'])
     nextColour()
   }
   $scope.newStickyToast = function() {
-    toasts.new(colour, 'Toast & Jam', 'This toast is sticky - it wont leave until you click it. It also has it\s own style so you can make it stand out. ', toasts.sticky);
+    toasts.new(toasts.type('test'), 'Toast & Jam', 'This toast is sticky - it wont leave until you click it. It also has it\s own style so you can make it stand out. ', toasts.sticky);
     nextColour()
   }
   $scope.newNoTitleToast = function () {
