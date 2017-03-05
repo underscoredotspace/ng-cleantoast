@@ -16,7 +16,8 @@ angular.module('ngCleanToast', [])
     },
     addType: function(type) {
       this.types.push(type)
-    }
+    },
+    sticky: -1
   }
 })
 
@@ -42,7 +43,7 @@ angular.module('ngCleanToast', [])
   return {
     restrict: 'AE',
     replace: false,
-    template: '<div ng-repeat="toast in toasts" class="ct-toast ct-toast-{{toast.type}}"><div ng-if="toast.title" class="ct-toast-title">{{toast.title}}</div><div ng-if="toast.text" class="ct-toast-text">{{toast.text}}</div></div>',
+    template: '<div ng-repeat="toast in toasts" class="ct-toast ct-toast-{{toast.type}}" ng-class="{\'ct-toast-sticky\':toast.sticky}"><div ng-if="toast.title" class="ct-toast-title" ng-class="{\'ct-toast-title-sticky\':toast.sticky}">{{toast.title}}</div><div ng-if="toast.text" class="ct-toast-text" ng-class="{\'ct-toast-text-sticky\':toast.sticky}">{{toast.text}}</div></div>',
     compile: function() {
       return {
         pre: function(scope, element) {
@@ -59,36 +60,45 @@ angular.module('ngCleanToast', [])
             // Default timeout to 3s if not specified
             toast.timeout = toast.timeout || 3000
 
+            if (toast.timeout<=0) {
+              toast.timeout = null
+              toast.sticky = true
+            }
+
             // Function to delete the toast, triggered on click or after toast.delay
             toast.clear = function() {
-              $timeout.cancel(toast.timer)
+              if (toast.timeout) $timeout.cancel(toast.timer)
               scope.toasts.splice(scope.toasts.indexOf(toast),1);
               scope.$digest()
             }
 
-            // Returns time left until toast.clear() will be run by $timeout
-            toast.timeLeft = function() {
-              return toast.timeout - (Date.now() - toast.startTime)
-            }
+            if (toast.timeout) {
+              // Returns time left until toast.clear() will be run by $timeout
+              toast.timeLeft = function() {
+                return toast.timeout - (Date.now() - toast.startTime)
+              }
 
-            // Clears current $timeout and returns time for passing to toast.resume()
-            toast.pause = function() {
-              timeLeft = toast.timeLeft()
-              $timeout.cancel(toast.timer)
-              return timeLeft
-            }
+              // Clears current $timeout and returns time for passing to toast.resume()
+              toast.pause = function() {
+                timeLeft = toast.timeLeft()
+                $timeout.cancel(toast.timer)
+                return timeLeft + 1000
+              }
 
-            // Effectively resumes the $timeout where we left off
-            toast.resume = function(timeLeft) {
+              // Effectively resumes the $timeout where we left off
+              toast.resume = function(timeLeft) {
+                toast.timer = $timeout(function () {
+                  toast.clear()
+                }, timeLeft);
+              }
+
+              // Create initial $timeout to delete toast after specified duration
               toast.timer = $timeout(function () {
                 toast.clear()
-              }, timeLeft);
+              }, toast.timeout);
+            } else {
+              toast.pause = toast.resume = function(){}
             }
-
-            // Create initial $timeout to delete toast after specified duration
-            toast.timer = $timeout(function () {
-              toast.clear()
-            }, toast.timeout);
 
             // Set the creation time and push to scope
             toast.startTime = Date.now()

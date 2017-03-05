@@ -38,6 +38,10 @@ body {
   border-bottom: 1px dashed black;
 }
 
+.ct-toast-text-sticky {
+  text-shadow: 0 0 10px white , 0 0 20px hotpink , 0 0 30px white , 0 0 40px hotpink , 0 0 70px white , 0 0 80px white , 0 0 100px hotpink ;
+}
+
 .ct-toast-text {
   padding: 10px;
 }
