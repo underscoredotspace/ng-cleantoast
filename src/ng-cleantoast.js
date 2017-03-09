@@ -9,10 +9,10 @@ angular.module('ngCleanToast', [])
     types: ['info', 'warn', 'error', 'debug'],
     _listener: null,
     new: function(type, title, text, timeout) {
-      this._listener({type:this.types[type], title:title, text:text, timeout:timeout});
+      this._listener({type:this.types[type], title:title, text:text, timeout:timeout})
     },
     seton: function(callback) {
-      this._listener = callback;
+      this._listener = callback
     },
     addType: function(type) {
       this.types.push(type)
@@ -50,10 +50,10 @@ angular.module('ngCleanToast', [])
           // Adds ct-toasts class if not in element already
           if (!element.hasClass('ct-toasts')) {
             element.addClass('ct-toasts')
-          };
+          }
 
           // Initialise toasts pipe for us to push to
-          scope.toasts = [];
+          scope.toasts = []
 
           // Effectively shares the scope and some new functions with toasts service
           toasts.seton(function(toast) { 
@@ -67,8 +67,10 @@ angular.module('ngCleanToast', [])
 
             // Function to delete the toast, triggered on click or after toast.delay
             toast.clear = function() {
-              if (toast.timeout) $timeout.cancel(toast.timer)
-              scope.toasts.splice(scope.toasts.indexOf(toast),1);
+              if (toast.timeout) {
+                $timeout.cancel(toast.timer)
+              }
+              scope.toasts.splice(scope.toasts.indexOf(toast),1)
               scope.$digest()
             }
 
@@ -89,23 +91,23 @@ angular.module('ngCleanToast', [])
               toast.resume = function(timeLeft) {
                 toast.timer = $timeout(function () {
                   toast.clear()
-                }, timeLeft);
+                }, timeLeft)
               }
 
               // Create initial $timeout to delete toast after specified duration
               toast.timer = $timeout(function () {
                 toast.clear()
-              }, toast.timeout);
+              }, toast.timeout)
             } else {
               toast.pause = toast.resume = function(){}
             }
 
             // Set the creation time and push to scope
             toast.startTime = Date.now()
-            scope.toasts.push(toast);
+            scope.toasts.push(toast)
           })
         }
       }
     }
   }
-});
+})
