@@ -8,12 +8,12 @@ body {
   z-index: 1000;
   width: 200px;
   height: 0;
-  text-align: center;
   top: 20px;
   right: 20px;
   max-height: calc(100vh - 20px); }
 
 .ct-toast {
+  text-align: center;
   margin: 10px;
   opacity: 0.9;
   color: #222426;

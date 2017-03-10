@@ -2,24 +2,24 @@ angular.module('ngCleanToast', [])
 
 .service('toasts', function() {
   return {
+    types: ['info', 'warn', 'error', 'debug'],
     // Convert Type text to index, e.g. 'warn' > 1
     type: function(type) {
       return this.types.indexOf(type)
     },
-    types: ['info', 'warn', 'error', 'debug'],
-    _listener: null,
-    new: function(type, title, text, timeout) {
+    create: function(type, title, text, timeout) {
       this._listener({type:this.types[type], title:title, text:text, timeout:timeout})
-    },
-    seton: function(callback) {
-      this._listener = callback
     },
     addType: function(type) {
       this.types.push(type)
     },
     sticky: -1,
-    defaultTimeout: 3000,
-    additionalTime: 1000
+    _listener: null,
+    _setListener: function(callback) {
+      this._listener = callback
+    },
+    _defaultTimeout: 3000,
+    _additionalTime: 1000
   }
 })
 
@@ -27,13 +27,17 @@ angular.module('ngCleanToast', [])
   return {
     restrict: 'C',
     link: function(scope, element) {
-      var timeleft
-      element.on('mouseover', function() {
-        timeleft = scope.toast.pause()
-      })
-      element.on('mouseout', function() {
-        scope.toast.resume(timeleft)
-      })
+      // if the toast is sticky, there's no need for these bindings
+      if (!scope.toast.sticky) {
+        var timeleft
+        element.on('mouseover', function() {
+          timeleft = scope.toast.pause()
+        })
+        element.on('mouseout', function() {
+          scope.toast.resume(timeleft)
+        })
+      }
+
       element.on('click', function(event) {
         scope.toast.clear()
       })
@@ -58,25 +62,24 @@ angular.module('ngCleanToast', [])
           scope.toasts = []
 
           // Effectively shares the scope and some new functions with toasts service
-          toasts.seton(function(toast) { 
-            // Default timeout to 3s if not specified
-            toast.timeout = toast.timeout || toasts.defaultTimeout
-
+          toasts._setListener(function(toast) { 
             if (toast.timeout<=0) {
-              toast.timeout = null
               toast.sticky = true
+            } else {
+              // Default timeout to 3s if not specified
+              toast.timeout = toast.timeout || toasts._defaultTimeout
             }
 
             // Function to delete the toast, triggered on click or after toast.delay
             toast.clear = function() {
-              if (toast.timeout) {
+              if (!toast.sticky) {
                 $timeout.cancel(toast.timer)
               }
               scope.toasts.splice(scope.toasts.indexOf(toast),1)
               scope.$digest()
             }
 
-            if (toast.timeout) {
+            if (!toast.sticky) {
               // Returns time left until toast.clear() will be run by $timeout
               toast.timeLeft = function() {
                 return toast.timeout - (Date.now() - toast.startTime)
@@ -86,7 +89,7 @@ angular.module('ngCleanToast', [])
               toast.pause = function() {
                 timeLeft = toast.timeLeft()
                 $timeout.cancel(toast.timer)
-                return timeLeft + toasts.additionalTime
+                return timeLeft + toasts._additionalTime
               }
 
               // Effectively resumes the $timeout where we left off
@@ -100,12 +103,11 @@ angular.module('ngCleanToast', [])
               toast.timer = $timeout(function () {
                 toast.clear()
               }, toast.timeout)
-            } else {
-              toast.pause = toast.resume = function(){}
+
+              // Set the creation time and push to scope
+              toast.startTime = Date.now()
             }
 
-            // Set the creation time and push to scope
-            toast.startTime = Date.now()
             scope.toasts.push(toast)
           })
         }

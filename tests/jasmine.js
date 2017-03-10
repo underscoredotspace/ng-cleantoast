@@ -18,7 +18,7 @@ describe('Testing toasts Service', function(){
   })
 
     it('defaultTimeout should be 3000', function() {
-    defaultTimeout = ToastService.defaultTimeout
+    defaultTimeout = ToastService._defaultTimeout
     expect(defaultTimeout).toBe(3000)
   })
   
@@ -53,19 +53,19 @@ describe('Testing toasts Service', function(){
     expect(typeID).toBe(4)
   })
 
-  it('seton() should create new toast listener', function() {
+  it('_setListener() should create new toast listener', function() {
     expect(ToastService._listener).toBe(null)
 
-    ToastService.seton(toastFunc)
+    ToastService._setListener(toastFunc)
     expect(ToastService._listener).toBe(toastFunc)
   })
 
   it('new() should run _listener()', function() {
-    ToastService.seton(toastFunc)
+    ToastService._setListener(toastFunc)
     expect(ToastService._listener).toBe(toastFunc)
 
     spyOn(ToastService, '_listener')
-    ToastService.new()
+    ToastService.create()
 
     expect(ToastService._listener).toHaveBeenCalled()
   })
@@ -97,7 +97,7 @@ describe('testing ctToasts directive', function() {
 
   it('should create a new warn toast in DOM', function() {
     testToast = {type: ToastService.type('warn'), title: 'Title', text: 'text'}
-    ToastService.new(testToast.type, testToast.title, testToast.text, testToast.timeout)
+    ToastService.create(testToast.type, testToast.title, testToast.text, testToast.timeout)
     scope.$digest()
 
     expect(elem.children().length).toEqual(1)
@@ -111,7 +111,7 @@ describe('testing ctToasts directive', function() {
     toast = scope.toasts[0]
 
     expect(toast.sticky).toBeUndefined()
-    expect(toast.timeout).toBe(ToastService.defaultTimeout)
+    expect(toast.timeout).toBe(ToastService._defaultTimeout)
     expect(toast.timer).not.toBeUndefined()
     expect(toast.pause).toEqual(jasmine.any(Function))
     expect(toast.pause()).toBeLessThan(4000)
@@ -126,7 +126,7 @@ describe('testing ctToasts directive', function() {
 
   it('should create a new sticky info toast in DOM', function() {
     testToast = {type: ToastService.type('info'), title: 'Title', text: 'text', timeout: ToastService.sticky}
-    ToastService.new(testToast.type, testToast.title, testToast.text, testToast.timeout)
+    ToastService.create(testToast.type, testToast.title, testToast.text, testToast.timeout)
     scope.$digest()
 
     expect(angular.element(elem).children().length).toEqual(1)
@@ -139,13 +139,12 @@ describe('testing ctToasts directive', function() {
     toast = scope.toasts[0]
 
     expect(toast.sticky).toBeTruthy()
-    expect(toast.timeout).toBeNull()
+    expect(toast.timeout).toBe(ToastService.sticky)
     expect(toast.timer).toBeUndefined()
-    expect(toast.pause).toEqual(jasmine.any(Function))
-    expect(toast.pause()).toBeUndefined()
+    expect(toast.pause).toBeUndefined()
     expect(toast.clear).toEqual(jasmine.any(Function))
-    expect(toast.resume).toEqual(jasmine.any(Function))
-    expect(toast.startTime).toEqual(jasmine.any(Number))
+    expect(toast.resume).toBeUndefined()
+    expect(toast.startTime).toBeUndefined()
     expect(toast.title).toBe(testToast.title)
     expect(toast.text).toBe(testToast.text)
     expect(toast.type).toBe(ToastService.types[testToast.type])
