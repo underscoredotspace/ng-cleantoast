@@ -94,7 +94,3 @@ This allows you to style every element of the toast yourself.
 
 ### Demo
 There is an [example] (https://underscoredotspace.github.io/ng-cleantoast/demo/index.html) with styles (background is purely to enhance the opacity/shadow change on hover). 
-
-### TODO
-- Better documentation
-- Tests!

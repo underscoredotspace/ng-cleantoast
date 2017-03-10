@@ -18,7 +18,8 @@ angular.module('ngCleanToast', [])
       this.types.push(type)
     },
     sticky: -1,
-    defaultTimeout: 3000
+    defaultTimeout: 3000,
+    additionalTime: 1000
   }
 })
 
@@ -85,7 +86,7 @@ angular.module('ngCleanToast', [])
               toast.pause = function() {
                 timeLeft = toast.timeLeft()
                 $timeout.cancel(toast.timer)
-                return timeLeft + 1000
+                return timeLeft + toasts.additionalTime
               }
 
               // Effectively resumes the $timeout where we left off

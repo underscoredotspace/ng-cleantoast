@@ -100,9 +100,10 @@ describe('testing ctToasts directive', function() {
     ToastService.new(testToast.type, testToast.title, testToast.text, testToast.timeout)
     scope.$digest()
 
-    expect(angular.element(elem).children().length).toEqual(1)
+    expect(elem.children().length).toEqual(1)
 
-    classList = angular.element(elem).children()[0].classList.value
+    classList = elem.children()[0].classList.value
+
     expect(classList).toContain('ct-toast')
     expect(classList).toContain('ct-toast-warn')
     expect(classList).not.toContain('ct-toast-sticky')
@@ -111,6 +112,13 @@ describe('testing ctToasts directive', function() {
 
     expect(toast.sticky).toBeUndefined()
     expect(toast.timeout).toBe(ToastService.defaultTimeout)
+    expect(toast.timer).not.toBeUndefined()
+    expect(toast.pause).toEqual(jasmine.any(Function))
+    expect(toast.pause()).toBeLessThan(4000)
+    expect(toast.pause()).toBeGreaterThan(3000)
+    expect(toast.clear).toEqual(jasmine.any(Function))
+    expect(toast.resume).toEqual(jasmine.any(Function))
+    expect(toast.startTime).toEqual(jasmine.any(Number))
     expect(toast.title).toBe(testToast.title)
     expect(toast.text).toBe(testToast.text)
     expect(toast.type).toBe(ToastService.types[testToast.type])
@@ -131,7 +139,13 @@ describe('testing ctToasts directive', function() {
     toast = scope.toasts[0]
 
     expect(toast.sticky).toBeTruthy()
-    expect(toast.timeout).toBe(null)
+    expect(toast.timeout).toBeNull()
+    expect(toast.timer).toBeUndefined()
+    expect(toast.pause).toEqual(jasmine.any(Function))
+    expect(toast.pause()).toBeUndefined()
+    expect(toast.clear).toEqual(jasmine.any(Function))
+    expect(toast.resume).toEqual(jasmine.any(Function))
+    expect(toast.startTime).toEqual(jasmine.any(Number))
     expect(toast.title).toBe(testToast.title)
     expect(toast.text).toBe(testToast.text)
     expect(toast.type).toBe(ToastService.types[testToast.type])
