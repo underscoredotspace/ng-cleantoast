@@ -31,38 +31,38 @@ New toasts are created using:
 toasts.create(type, title, text, timeout);
 ````
 
-Built-in types are `info`, `warn`, `success` and `error`. They can be accessed via `toasts.types` like `toasts.types('info')`. Custom types can be added with `toasts.addType('myNiceType')`. This new type can then be passed using `toasts.types('myNiceType')`.
+Built-in types are `info`, `warn`, `success` and `error`. They can be accessed via `toasts.types()` like `toasts.types('info')`. Custom types can be added with `toasts.addType('myNiceType')`. 
 
 ![A wild Toast has appeared!] (screenshot.png)
 
-`title` and `text` are optional, but should be empty strings if not required: 
+`title` and `text` are optional, but empty strings are needed if they are not required: 
 
 ````javascript
 // Creates a new toast without a title
 toasts.create(toasts.type('info'), '', 'Hello');
 ````
 
-`timeout` is the number of milliseconds (1000th of 1s) before the toast will disappear. It is optional and will default to 3000ms (3s) if not passed. You may also create sticky toasts that don't disappear until they are clicked on, by passing `toasts.sticky` (or any negative number) as the timeout value. 
+`timeout` is the number of milliseconds (1000th of 1s) before the toast will disappear. This is optional and will default to 3000ms (3s) if not passed. You may also create sticky toasts that don't disappear until they are clicked on, by passing `toasts.sticky` (or any negative number) as the timeout value. 
 
-Sticky toasts have their own style classes so you can make them stand out. See examples below. 
+Sticky toasts have their own style classes so you can make them stand out. See the examples below. 
 
 ### Placement
-You will  need to tell the browser where to show toasts by placing an element or attribute. Again, from the demo: 
-
-````html
-<div ct-toasts></div>
-````
-
-OR
+You will need to tell the browser where to show toasts, by placing an element or attribute in a DIV or other tag:
 
 ````html
 <ct-toasts></ct-toasts>
 ````
 
+OR
+
+````html
+<div ct-toasts></div>
+````
+
 #### Placement CSS
 It's convention that a toast pops up above some other content, but not blocking anything important. In the demo, the `ct-toasts` element has fixed positioning and uses a very high `z-index`. 
 
-If you follow this pattern, the initial `height` of `ct-toasts` should be `0`, and `max-height` should be no more than the view height (minus any `top` amount). This prevents a scrollbar appearing unnecessarily. This example shows top-right placement of the toasts: 
+If you follow this pattern, the initial `height` of `ct-toasts` should be `0`, and `max-height` should be no more than the view height (minus any `top`/`margin`/`padding` etc. to prevent unexpected scrolling). This example shows top-right placement of the toasts: 
 
 ````css
 .ct-toasts {
@@ -86,7 +86,7 @@ The toast itself appear inside the `.ct-toasts` class like so (for toast type **
 </div>
 ````
 
-Sticky toasts are ever-so-slightly different to allow you to make them stand out: 
+Sticky toasts are ever-so-slightly different: 
 
 ````HTML
 <div class="ct-toasts">
@@ -100,7 +100,7 @@ Sticky toasts are ever-so-slightly different to allow you to make them stand out
 This allows you to style every element of the toast yourself. 
 
 ### Demo
-There is an [example] (https://underscoredotspace.github.io/ng-cleantoast/demo) with styles (background is purely to enhance the opacity/shadow change on hover). 
+There is an [example](https://underscoredotspace.github.io/ng-cleantoast/demo) with styles (background is purely to enhance the opacity/shadow change on hover). 
 
 ### Tests
-Jasmine tests are included in the tests folder, or you can run the tests (for the current repository code) [here] (https://underscoredotspace.github.io/ng-cleantoast/tests. 
+Jasmine tests are included in the tests folder, or you can run the tests (for the current repository code) [here](https://underscoredotspace.github.io/ng-cleantoast/tests). 
