@@ -17,7 +17,8 @@ angular.module('ngCleanToast', [])
     addType: function(type) {
       this.types.push(type)
     },
-    sticky: -1
+    sticky: -1,
+    defaultTimeout: 3000
   }
 })
 
@@ -58,7 +59,7 @@ angular.module('ngCleanToast', [])
           // Effectively shares the scope and some new functions with toasts service
           toasts.seton(function(toast) { 
             // Default timeout to 3s if not specified
-            toast.timeout = toast.timeout || 3000
+            toast.timeout = toast.timeout || toasts.defaultTimeout
 
             if (toast.timeout<=0) {
               toast.timeout = null

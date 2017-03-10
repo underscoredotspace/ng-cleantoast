@@ -12,12 +12,17 @@ describe('Testing toasts Service', function(){
     })
   })
 
-  it('should check that sticky is less than 0', function() {
+  it('sticky should be less than 0', function() {
     sticky = ToastService.sticky
     expect(sticky).toBeLessThan(0)
   })
+
+    it('defaultTimeout should be 3000', function() {
+    defaultTimeout = ToastService.defaultTimeout
+    expect(defaultTimeout).toBe(3000)
+  })
   
-  it('should return available types', function() {
+  it('types[] should contain predefined types', function() {
     var types = ToastService.types
     expect(types).toContain('info')
     expect(types).toContain('warn')
@@ -26,7 +31,7 @@ describe('Testing toasts Service', function(){
     expect(types.length).toEqual(4)
   })
 
-  it('should return type id from name', function() {
+  it('type() should return type id from name', function() {
     typeInfo = ToastService.type('info')
     typeWarn = ToastService.type('warn')
     typeError = ToastService.type('error')
@@ -38,7 +43,7 @@ describe('Testing toasts Service', function(){
     expect(typeDebug).toBe(3)
   })
 
-  it('should add new type', function() {
+  it('addType() should add new type', function() {
     ToastService.addType('test')
     var types = ToastService.types
     typeID = ToastService.type('test')
@@ -48,14 +53,14 @@ describe('Testing toasts Service', function(){
     expect(typeID).toBe(4)
   })
 
-  it('should create new toast listener', function() {
+  it('seton() should create new toast listener', function() {
     expect(ToastService._listener).toBe(null)
 
     ToastService.seton(toastFunc)
     expect(ToastService._listener).toBe(toastFunc)
   })
 
-  it('should run _listener()', function() {
+  it('new() should run _listener()', function() {
     ToastService.seton(toastFunc)
     expect(ToastService._listener).toBe(toastFunc)
 
@@ -88,5 +93,47 @@ describe('testing ctToasts directive', function() {
     hasClass = elem.hasClass('ct-toasts')
     expect(hasClass).toBeTruthy()
     expect(elem[0].innerText).toEqual('')
+  })
+
+  it('should create a new warn toast in DOM', function() {
+    testToast = {type: ToastService.type('warn'), title: 'Title', text: 'text'}
+    ToastService.new(testToast.type, testToast.title, testToast.text, testToast.timeout)
+    scope.$digest()
+
+    expect(angular.element(elem).children().length).toEqual(1)
+
+    classList = angular.element(elem).children()[0].classList.value
+    expect(classList).toContain('ct-toast')
+    expect(classList).toContain('ct-toast-warn')
+    expect(classList).not.toContain('ct-toast-sticky')
+
+    toast = scope.toasts[0]
+
+    expect(toast.sticky).toBeUndefined()
+    expect(toast.timeout).toBe(ToastService.defaultTimeout)
+    expect(toast.title).toBe(testToast.title)
+    expect(toast.text).toBe(testToast.text)
+    expect(toast.type).toBe(ToastService.types[testToast.type])
+  })
+
+  it('should create a new sticky info toast in DOM', function() {
+    testToast = {type: ToastService.type('info'), title: 'Title', text: 'text', timeout: ToastService.sticky}
+    ToastService.new(testToast.type, testToast.title, testToast.text, testToast.timeout)
+    scope.$digest()
+
+    expect(angular.element(elem).children().length).toEqual(1)
+
+    classList = angular.element(elem).children()[0].classList.value
+    expect(classList).toContain('ct-toast')
+    expect(classList).toContain('ct-toast-info')
+    expect(classList).toContain('ct-toast-sticky')
+
+    toast = scope.toasts[0]
+
+    expect(toast.sticky).toBeTruthy()
+    expect(toast.timeout).toBe(null)
+    expect(toast.title).toBe(testToast.title)
+    expect(toast.text).toBe(testToast.text)
+    expect(toast.type).toBe(ToastService.types[testToast.type])
   })
 })
