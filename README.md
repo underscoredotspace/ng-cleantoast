@@ -2,7 +2,7 @@
 
 Simple toast service for Angular 1.x. Many toast services are built on sending $emit messages via $rootScope. This never felt right to me, so this design keeps all data within the service and it's related directives. 
 
-Designed to be as light as possible so no builtin animations, and no crazy dependencies like Bootstrap (although your free to utilise this). 
+Designed to be as light as possible so no builtin animations, and no crazy dependencies like Bootstrap (although you're free to utilise this). 
 
 Just toasts. 
 
