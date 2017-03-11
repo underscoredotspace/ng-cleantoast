@@ -106,7 +106,7 @@ describe('testing ctToasts directive', function() {
 
     expect(classList).toContain('ct-toast')
     expect(classList).toContain('ct-toast-warn')
-    expect(classList).not.toContain('ct-toast-sticky')
+    expect(classList).not.toContain('ct-sticky')
 
     toast = scope.toasts[0]
 
@@ -134,7 +134,7 @@ describe('testing ctToasts directive', function() {
     classList = angular.element(elem).children()[0].classList.value
     expect(classList).toContain('ct-toast')
     expect(classList).toContain('ct-toast-info')
-    expect(classList).toContain('ct-toast-sticky')
+    expect(classList).toContain('ct-sticky')
 
     toast = scope.toasts[0]
 

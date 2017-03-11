@@ -49,7 +49,7 @@ angular.module('ngCleanToast', [])
   return {
     restrict: 'AE',
     replace: false,
-    template: '<div ng-repeat="toast in toasts" class="ct-toast ct-toast-{{toast.type}}" ng-class="{\'ct-toast-sticky\':toast.sticky}"><div ng-if="toast.title" class="ct-toast-title" ng-class="{\'ct-toast-title-sticky\':toast.sticky}">{{toast.title}}</div><div ng-if="toast.text" class="ct-toast-text" ng-class="{\'ct-toast-text-sticky\':toast.sticky}">{{toast.text}}</div></div>',
+    template: '<div ng-repeat="toast in toasts" class="ct-toast ct-toast-{{toast.type}}" ng-class="{\'ct-sticky\':toast.sticky}"><div ng-if="toast.title" class="ct-toast-title" ng-class="{\'ct-sticky\':toast.sticky}">{{toast.title}}</div><div ng-if="toast.text" class="ct-toast-text" ng-class="{\'ct-sticky\':toast.sticky}">{{toast.text}}</div></div>',
     compile: function() {
       return {
         pre: function(scope, element) {

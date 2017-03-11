@@ -1,0 +1,23 @@
+{
+  "name": "ng-cleantoast",
+  "description": "Toast Service for Angular 1.x",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/underscoredotspace/ng-cleantoast.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "toast"
+  ],
+  "author": "Colin Tindle <ampersand@underscore.space> (https://underscore.space)",
+  "license": "CC-BY-NC-4.0",
+  "bugs": {
+    "url": "https://github.com/underscoredotspace/ng-cleantoast/issues"
+  },
+  "homepage": "https://github.com/underscoredotspace/ng-cleantoast#readme",
+  "devDependencies": {
+    "grunt-contrib-uglify": "^2.2.0",
+    "grunt": "^1.0.1"
+  }
+}

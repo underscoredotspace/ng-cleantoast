@@ -10,16 +10,16 @@ Just toasts.
 Available on Bower with `bower install ng-cleantoast`. 
 
 ### Usage
-Add `bower_components/ng-cleantoast/src/ng-cleantoast.js` to your main index.html along with Angular thus: 
+Add `bower_components/ng-cleantoast/dist/ng-cleantoast.min.js` to your main index.html along with Angular thus: 
 
 ````html
 <head>
   <script src="bower_components/angularjs/angular.min.js"></script>
-  <script src="bower_components/ng-cleantoast/src/ngIsVisible.js"></script>
+  <script src="bower_components/ng-cleantoast/dist/ng-cleantoast.min.js"></script>
 </head>
 ````
 
-Inject `ngCleanToast` to your module, and add `toasts` to any components that toasts will be created from. For example, in the demo we have: 
+Inject `ngCleanToast` to your module, and add `toasts` to any components that toasts will be created from:
 
 ````javascript
 angular.module('demoApp', ['ngCleanToast'])
@@ -94,9 +94,9 @@ Sticky toasts are ever-so-slightly different:
 
 ````HTML
 <div class="ct-toasts">
-  <div class="ct-toast ct-toast-sticky ct-toast-info">
-    <div class="ct-toast-title ct-toast-title-sticky">Toast Title</div>
-    <div class="ct-toast-text ct-toast-text-sticky">Toast Text</div>
+  <div class="ct-toast ct-sticky ct-toast-info">
+    <div class="ct-toast-title ct-sticky">Toast Title</div>
+    <div class="ct-toast-text ct-sticky">Toast Text</div>
   </div>
 </div>
 ````
@@ -108,3 +108,6 @@ There is an [example](https://underscoredotspace.github.io/ng-cleantoast/demo) w
 
 ### Tests
 Jasmine tests are included in the tests folder, or you can run the tests (for the current repository code) [here](https://underscoredotspace.github.io/ng-cleantoast/tests). 
+
+### Issues/Ideas
+Please log any [issues or suggestions](https://github.com/underscoredotspace/ng-cleantoast/issues)! I aim to keep this as simple as possible, while providing the key features you expect of your toasts. 
