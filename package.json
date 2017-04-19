@@ -1,7 +1,7 @@
 {
   "name": "ng-cleantoast",
   "description": "Toast Service for Angular 1.x",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0",
   "scripts": {
     "grunt": "node_modules/.bin/grunt"
   },
