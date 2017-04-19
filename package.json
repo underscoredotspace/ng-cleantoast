@@ -1,6 +1,10 @@
 {
   "name": "ng-cleantoast",
   "description": "Toast Service for Angular 1.x",
+  "version": "1.0.0-beta1",
+  "scripts": {
+    "grunt": "node_modules/.bin/grunt"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/underscoredotspace/ng-cleantoast.git"

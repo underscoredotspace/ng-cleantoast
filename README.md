@@ -1,8 +1,8 @@
 # ng-CleanToast
 
-Simple toast service for Angular 1.x. Many toast services are built on sending $emit messages via $rootScope. This never felt right to me, so this design keeps all data within the service and it's related directives. 
+Simple toast service for Angular 1.x. Many toast services are built on sending $emit messages via $rootScope. This never felt right to me, so this design keeps all data within the service and it's related directive. 
 
-Designed to be as light as possible so no builtin animations, and no crazy dependencies like Bootstrap (although you're free to utilise this). 
+Designed to be as light as possible so no built-in animations, and no outside dependencies other than AngularJS itself. 
 
 Just toasts. 
 
@@ -19,7 +19,7 @@ Add `bower_components/ng-cleantoast/dist/ng-cleantoast.min.js` to your main inde
 </head>
 ````
 
-Inject `ngCleanToast` to your module, and add `toasts` to any components that toasts will be created from:
+Inject `ngCleanToast` to your module, and add `toasts` to any components that  will be create toasts:
 
 ````javascript
 angular.module('demoApp', ['ngCleanToast'])
@@ -32,34 +32,41 @@ angular.module('demoApp', ['ngCleanToast'])
 New toasts are created using: 
 
 ````javascript
-toasts.create(type, title, text, timeout);
+toasts.create(type, title, text, timeout)
 ````
 
 Built-in types are `info`, `warn`, `success` and `error`. They can be accessed via `toasts.types()` like `toasts.types('info')`. Custom types can be added with `toasts.addType('myNiceType')`. 
 
-![A wild Toast has appeared!] (screenshot.png)
+![Screenshot of example toast](screenshot.png)
 
 `title` and `text` are optional, but empty strings are needed if they are not required: 
 
 ````javascript
-// Creates a new toast without a title
-toasts.create(toasts.type('info'), '', 'Hello');
+// Creates a new toast without a title and default timeout [see below]
+toasts.create(toasts.type('info'), '', 'Hello')
 ````
 
 `timeout` is the number of milliseconds (1000th of 1s) before the toast will disappear. This is optional and will default to 3000ms (3s) if not passed. You may also create sticky toasts that don't disappear until they are clicked on, by passing `toasts.sticky` (or any negative number) as the timeout value. 
 
 Sticky toasts have their own style classes so you can make them stand out. See the examples below. 
 
+#### Note about async calls
+If the toast is called from an async fuction, the call must be wrapped in an $apply() function like so: 
+
+````javascript
+$scope.$apply(function() {
+  toasts.create(type, title, text, timeout)
+})
+```` 
+
 ### Placement
 You will need to tell the browser where to show toasts, by placing an element or attribute in a DIV or other tag:
 
 ````html
 <ct-toasts></ct-toasts>
-````
 
-OR
+<!-- OR -->
 
-````html
 <div ct-toasts></div>
 ````
 
@@ -79,7 +86,7 @@ If you follow this pattern, the initial `height` of `ct-toasts` should be `0`, a
   max-height: calc(100vh - 20px); }
 ````
 
-The toast itself appear inside the `.ct-toasts` class like so (for toast type **info**): 
+The `div` or `ct-toasts` element you create will be replaced with `div class="ct-toasts"`, and the toasts theselves render inside the `.ct-toasts` class like so (for toast type **info**): 
 
 ````HTML
 <div class="ct-toasts">
@@ -104,10 +111,12 @@ Sticky toasts are ever-so-slightly different:
 This allows you to style every element of the toast yourself. 
 
 ### Demo
-There is an [example](https://underscoredotspace.github.io/ng-cleantoast/demo) with styles (background is purely to enhance the opacity/shadow change on hover). 
+There is an [example](https://underscoredotspace.github.io/ng-cleantoast/demo) with styles (the awful background is purely to enhance the opacity/shadow change on hover (sorry)). 
 
 ### Tests
-Jasmine tests are included in the tests folder, or you can run the tests (for the current repository code) [here](https://underscoredotspace.github.io/ng-cleantoast/tests). 
+Jasmine tests are included in the tests folder (open index.html in the browser), or you can run the tests (for the current **master** code) [here](https://underscoredotspace.github.io/ng-cleantoast/tests). 
 
-### Issues/Ideas
-Please log any [issues or suggestions](https://github.com/underscoredotspace/ng-cleantoast/issues)! I aim to keep this as simple as possible, while providing the key features you expect of your toasts. 
+### Issues/Pull requests
+Please log any [issues, suggestions or questions](https://github.com/underscoredotspace/ng-cleantoast/issues). I aim to keep this as simple as possible, while providing the key features you expect of toasts. 
+
+To set up an environment for development, clone the repo and `npm install`. Minify with `npm run grunt` before running tests (which are run against the minified version) and submitting a pull request. 
