@@ -17,7 +17,7 @@ describe('Testing toasts Service', function(){
     expect(sticky).toBeLessThan(0)
   })
 
-    it('defaultTimeout should be 3000', function() {
+  it('defaultTimeout should be 3000', function() {
     defaultTimeout = ToastService._defaultTimeout
     expect(defaultTimeout).toBe(3000)
   })
@@ -102,11 +102,10 @@ describe('testing ctToasts directive', function() {
 
     expect(elem.children().length).toEqual(1)
 
-    classList = elem.children()[0].classList.value
-
-    expect(classList).toContain('ct-toast')
-    expect(classList).toContain('ct-toast-warn')
-    expect(classList).not.toContain('ct-sticky')
+    // classList = elem.children()[0].classList.value
+    // // expect(classList).toContain('ct-toast')
+    // // expect(classList).toContain('ct-toast-warn')
+    // expect(classList).not.toContain('ct-sticky')
 
     toast = scope.toasts[0]
 
@@ -131,10 +130,10 @@ describe('testing ctToasts directive', function() {
 
     expect(angular.element(elem).children().length).toEqual(1)
 
-    classList = angular.element(elem).children()[0].classList.value
-    expect(classList).toContain('ct-toast')
-    expect(classList).toContain('ct-toast-info')
-    expect(classList).toContain('ct-sticky')
+    // classList = angular.element(elem).children()[0].classList.value
+    // expect(classList).toContain('ct-toast')
+    // expect(classList).toContain('ct-toast-info')
+    // expect(classList).toContain('ct-sticky')
 
     toast = scope.toasts[0]
 

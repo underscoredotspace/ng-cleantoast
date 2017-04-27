@@ -1,5 +1,15 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    jasmine : {
+      src : 'dist/*.js',
+      options : {
+        specs : 'tests/*.js',
+        vendor: [
+          'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js',
+          'https://code.angularjs.org/1.6.4/angular-mocks.js'
+        ]
+      }
+    },
     uglify: {
       options: {
         mangle: {
@@ -13,9 +23,9 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
-  // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('test', ['jasmine'])
+  grunt.registerTask('default', ['uglify', 'test']);
 };

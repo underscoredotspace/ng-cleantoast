@@ -3,7 +3,7 @@
   "description": "Toast Service for Angular 1.x",
   "version": "1.0.0",
   "scripts": {
-    "grunt": "node_modules/.bin/grunt"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/underscoredotspace/ng-cleantoast#readme",
   "devDependencies": {
     "grunt-contrib-uglify": "^2.2.0",
+    "grunt-contrib-jasmine": "^1.1.0",
     "grunt": "^1.0.1"
   }
 }

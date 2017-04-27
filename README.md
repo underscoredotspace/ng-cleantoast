@@ -114,7 +114,7 @@ This allows you to style every element of the toast yourself.
 There is an [example](https://underscoredotspace.github.io/ng-cleantoast/demo) with styles (the awful background is purely to enhance the opacity/shadow change on hover (sorry)). 
 
 ### Tests
-Jasmine tests are included in the tests folder (open index.html in the browser), or you can run the tests (for the current **master** code) [here](https://underscoredotspace.github.io/ng-cleantoast/tests). 
+With devDependencies installed, run `npm test`
 
 ### Issues/Pull requests
 Please log any [issues, suggestions or questions](https://github.com/underscoredotspace/ng-cleantoast/issues). I aim to keep this as simple as possible, while providing the key features you expect of toasts. 
