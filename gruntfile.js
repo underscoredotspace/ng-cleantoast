@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     jasmine : {
       src : 'dist/*.js',
       options : {
-        specs : 'tests/*.js',
+        specs : 'tests/spec.js',
         vendor: [
           'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js',
           'https://code.angularjs.org/1.6.4/angular-mocks.js'
